@@ -17,13 +17,16 @@ import { CommonModule } from '@angular/common';
   `,
   styles: [`
     .produto {
-      border: 1px solid #ddd;
-      padding: 15px;
-      margin: 10px;
-      text-align: center;
+      background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 1em;
+    margin: 0.5em 0;
+    text-align: center;
+    border-radius: 5px;
     }
     img {
       max-width: 150px;
+    margin-bottom: 1em;
     }
   `]
 })

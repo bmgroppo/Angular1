@@ -21,17 +21,20 @@ import { ProdutoComponent } from '../produto/produto.component';
   `,
   styles: [`
     .grade-produtos {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
+      flex: 3;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
     }
   `]
 })
 export class ProdutosListComponent {
   produtos = [
-    { nome: 'Camisa Social', preco: 50, imagem: 'camisa.webp' },
-    { nome: 'Calça Jeans', preco: 120, imagem: 'calca.jpeg' },
-    { nome: 'Tênis Esportivo', preco: 200, imagem: 'tenis.webp' }
+  { nome: 'Camisa Social', preco: 50, imagem:'camisa.webp' },
+  { nome: 'Calça Jeans', preco: 120, imagem: 'Calça.jpeg' },
+  { nome: 'Tênis Esportivo', preco: 200, imagem: 'Tenis.webp' }
   ];
 
   @Output() itemAdicionado = new EventEmitter<any>();
