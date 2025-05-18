@@ -1,22 +1,32 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
 import { ProdutosListComponent } from './components/produtos-list/produtos-list.component';
 import { CarrinhoComponent } from './components/carrinho/carrinho.component';
-import { ProdutoComponent } from './components/produto/produto.component'; // Adicione esta linha
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    CarrinhoComponent,
-    ProdutoComponent // Adicione esta linha
-  ],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  imports: [ProdutosListComponent, CarrinhoComponent],
+  template: `
+    <header>
+      <h1>Loja de Roupas</h1>
+    </header>
+    <main>
+      <app-produtos-list (itemAdicionado)="carrinho.adicionarItem($event)"></app-produtos-list>
+      <app-carrinho #carrinho></app-carrinho>
+    </main>
+  `,
+  styles: [`
+    main { 
+      display: flex; 
+      padding: 20px;
+      gap: 20px;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+  `]
 })
-export class AppComponent {
-  title = 'loja-roupas-angular';
-}
+export class AppComponent {}

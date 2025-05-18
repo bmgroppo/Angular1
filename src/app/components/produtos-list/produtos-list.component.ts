@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProdutoComponent } from '../produto/produto.component';
 
@@ -6,14 +6,32 @@ import { ProdutoComponent } from '../produto/produto.component';
   selector: 'app-produtos-list',
   standalone: true,
   imports: [CommonModule, ProdutoComponent],
-  templateUrl: './produtos-list.component.html',
-  styleUrls: ['./produtos-list.component.css']
+  template: `
+    <section class="lista-produtos">
+      <h2>Nossas Roupas</h2>
+      <div class="grade-produtos">
+        @for (produto of produtos; track produto.nome) {
+          <app-produto 
+            [produto]="produto"
+            (adicionar)="onAdicionarAoCarrinho($event)">
+          </app-produto>
+        }
+      </div>
+    </section>
+  `,
+  styles: [`
+    .grade-produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+  `]
 })
 export class ProdutosListComponent {
   produtos = [
-    { nome: 'Camisa social', preco: 50, imagem: 'assets/images/camisa.webp' },
-    { nome: 'Calça Jeans', preco: 120, imagem: 'assets/images/calca.jpeg' },
-    { nome: 'Tênis social', preco: 200, imagem: 'assets/images/tenis.webp' }
+    { nome: 'Camisa Social', preco: 50, imagem: 'camisa.webp' },
+    { nome: 'Calça Jeans', preco: 120, imagem: 'calca.jpeg' },
+    { nome: 'Tênis Esportivo', preco: 200, imagem: 'tenis.webp' }
   ];
 
   @Output() itemAdicionado = new EventEmitter<any>();
