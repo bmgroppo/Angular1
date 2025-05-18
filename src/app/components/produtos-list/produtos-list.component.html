@@ -1,1 +1,9 @@
-<p>produtos-list works!</p>
+<!-- produtos-list.component.html -->
+<section id="produtos">
+    <h2>Nossas roupas</h2>
+    <app-produto 
+        *ngFor="let produto of produtos" 
+        [produto]="produto"
+        (adicionarAoCarrinho)="onAdicionarAoCarrinho($event)">
+    </app-produto>
+</section>

@@ -1,23 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, Output, EventEmitter } from '@angular/core';
 
-import { ProdutosListComponent } from './produtos-list.component';
+@Component({
+  selector: 'app-produtos-list',
+  templateUrl: './produtos-list.component.html',
+  styleUrls: ['./produtos-list.component.css']
+})
+export class ProdutosListComponent {
+  produtos = [
+    { nome: 'Camisa social', preco: 50, imagem: 'camisa.webp' },
+    { nome: 'Calça Jeans', preco: 120, imagem: 'Calça.jpeg' },
+    { nome: 'Tênis social', preco: 200, imagem: 'Tenis.webp' }
+  ];
 
-describe('ProdutosListComponent', () => {
-  let component: ProdutosListComponent;
-  let fixture: ComponentFixture<ProdutosListComponent>;
+  @Output() itemAdicionado = new EventEmitter<any>();
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ProdutosListComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(ProdutosListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  adicionarAoCarrinho(produto: any) {
+    this.itemAdicionado.emit(produto);
+  }
+}
